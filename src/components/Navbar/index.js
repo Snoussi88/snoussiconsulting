@@ -1,39 +1,82 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import {FaBars} from 'react-icons/fa';
+import {animateScroll as scroll} from 'react-scroll';
 import {Nav,NavLogo,NavbarContainer,MobileIcon,NavLinks,NavItem,NavMenu,NavBtn,NavBtnLink} from './NavbarElements';
 
-const Navbar = () => {
+const Navbar = ({toggle}) => {
+    const [scrollNav, setScrollNav] = useState(false);
+    const changeNav = () => {
+        if(window.scrollY >= 80){
+            setScrollNav(true)
+        } else {
+            setScrollNav(false)
+        }
+    }
+    const toggleHome = () => {
+        scroll.scrollToTop()
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll',changeNav)
+    }, []);
     return (
-        <div>
-            <Nav>
+        <>
+            <Nav scrollNav={scrollNav}>
                 <NavbarContainer>
-                    <NavLogo to='/'>
+                    <NavLogo to='/' onClick={toggleHome}>
                         SNOUSSI Consulting.
                     </NavLogo>
-                    <MobileIcon><FaBars/></MobileIcon>
+                    <MobileIcon onClick={toggle}><FaBars/></MobileIcon>
                     <NavMenu>
                         <NavItem>
-                            <NavLinks to='about'>About</NavLinks>
+                            <NavLinks to='home'
+                            smooth={true} 
+                            duration={500} 
+                            spy={true} 
+                            exact='true'
+                            offset={-80}>
+                            Home</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='home'>Home</NavLinks>
+                            <NavLinks to='about'
+                            smooth={true} 
+                            duration={500} 
+                            spy={true} 
+                            exact='true'
+                            offset={-80}
+                            activeClass="active"
+                            >About</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='services'>Services</NavLinks>
+                            <NavLinks to='services'
+                            smooth={true} 
+                            duration={500} 
+                            spy={true} 
+                            exact='true'
+                            offset={-80}
+                            activeClass="active">Services</NavLinks>
                         </NavItem>
                         <NavItem>
-                            <NavLinks to='services'>Discover</NavLinks>
+                            <NavLinks to='discover'
+                            smooth={true} 
+                            duration={500} 
+                            spy={true} 
+                            exact='true'
+                            offset={-80}
+                            activeClass="active">Discover</NavLinks>
                         </NavItem>
                     </NavMenu>
-                </NavbarContainer>
-                <NavBtn>
-                        <NavBtnLink to='signin'>
-                            Sign in
+                    <NavBtn>
+                        <NavBtnLink to='/signin'>
+                            Sign In
                         </NavBtnLink>
-                </NavBtn>
+                    </NavBtn>
+                </NavbarContainer>
+                
+                
             </Nav>
             
-        </div>
+        </>
     )
 }
 
