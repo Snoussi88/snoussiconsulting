@@ -68,7 +68,9 @@ export const SidebarMenu = styled.ul`
     text-align: center;
 
     @media screen and (max-width: 480px){
+        display: grid;
         grid-template-rows: repeat(6,60px);
+        grid-template-columns: 1fr;
     }
 `
 export const SidebarRoute = styled(LinkR)`

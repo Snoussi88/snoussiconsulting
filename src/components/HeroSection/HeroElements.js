@@ -71,7 +71,7 @@ export const HeroH1 = styled.h1`
 
 export const HeroP = styled.p`
     margin-top: 24px;
-    color:#fff;
+    color: #fff;
     font-size:24px;
     text-align: center;
     max-width: 600px;
@@ -96,6 +96,6 @@ export const ArrowForward = styled(MdArrowForward)`
 `
 
 export const ArrowRight = styled(MdKeyboardArrowRight)`
-    margin-left 8px;
+    margin-left:8px;
     font-size: 20px;
 `
